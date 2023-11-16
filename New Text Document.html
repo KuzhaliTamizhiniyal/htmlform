@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form and Table Example</title>
+</head>
+<body>
+    <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
+    
+    <h1 id="title">form</h1>
+    <p id="description">a built in form</p>
+    
+  <form id="form">
+    <div class="form-group">
+    <label for="first-name">First Name:</label>
+    <input type="text" id="first-name" name="firstName" placeholder="firatname" required><br>
+
+    <label for="last-name">Last Name:</label>
+    <input type="text" id="last-name" name="lastName" placeholder="lastname" required><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4" cols="50" placeholder="email"></textarea>
+
+    <label for="pincode">Pincode:</label>
+    <input type="text" id="pincode" name="pincode" placeholder="email" required><br>
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email" placeholder="email" required><br>
+    <p>Please select your gender:</p>
+  <input type="radio" id="gender" name="gender" value="male">
+  <label for="gender">male</label><br>
+  <input type="radio" id="gender" name="gender" value="female">
+  <label for="gender">female</label><br><br>
+
+    <label for="food">Choice of Food (select at least 2):</label>
+    <select id="food" name="food" multiple required>
+      <option value="pizza">Pizza</option>
+      <option value="burger">Burger</option>
+      <option value="pasta">Pasta</option>
+      <option value="salad">Salad</option>
+      <option value="sushi">Sushi</option>
+    </select><br>
+
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required><br>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required><br>
+
+    <button class="btn btn-primary" id="submit" type="button" onclick="submitForm()">Submit</button>
+    <button class="btn btn-primary" id="submit" type="button" onclick="clearForm()">Clear</button>
+  </form>
+</div>
+  <table class="table">
+    <thead>
+        <tbody><tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Pincode</th>
+            <th>Gender</th>
+            <th>Food</th>
+            <th>State</th>
+            <th>Country</th>
+          </tr></tbody>
+    </thead>
+    
+  </table>
+
+  <script>
+    function submitForm() {
+      var form = document.getElementById("myForm");
+      var table = document.getElementById("myTable");
+
+      var row = table.insertRow(-1);
+      var cells = [];
+
+      for (var i = 0; i < 8; i++) {
+        cells[i] = row.insertCell(i);
+      }
+
+      cells[0].innerHTML = form.firstName.value;
+      cells[1].innerHTML = form.lastName.value;
+      cells[2].innerHTML = form.address.value;
+      cells[3].innerHTML = form.pincode.value;
+      cells[4].innerHTML = form.gender.value;
+      cells[5].innerHTML = Array.from(form.food.selectedOptions).map(option => option.value).join(', ');
+      cells[6].innerHTML = form.state.value;
+      cells[7].innerHTML = form.country.value;
+
+      clearForm();
+    }
+
+    function clearForm() {
+      var form = document.getElementById("myForm");
+      form.reset();
+    }
+  </script>
+
+</body>
+</html>
